@@ -5,7 +5,7 @@ Plugin URI: http://ibnuyahya.com/wordpress-plugins/category-post-shortcode/
 Description: To display post by category in your page/post
 Author: ibnuyahya
 Author URI: http://ibnuyahya.com/
-Version: 2.4
+Version: 2.5
 
 Contributors
 Ben McFadden - https://github.com/mcfadden
@@ -26,7 +26,8 @@ Ben McFadden - https://github.com/mcfadden
  * thumbnail_type - set to 'meta' to use custom thumbnail-url meta field, set to 'featured_image' to use the featured image. default is 'meta'
  * thumbnail_height - image size for the thumbnail. default is 130
  * thumbnail_width - image size for the thumbnail. default is 130
- * excerpt    - set true if you want to display excertp. default is true
+ * excerpt    - set true if you want to display excerpt. (ignored is full_post is true) default is true
+ * full_post  - set true if you want to display entire post. (overrides excerpt setting) default is false
  * date       - set true if you want to display post date. default is false
  * orderby    - your post will order by . default post_date . check http://codex.wordpress.org/Template_Tags/get_posts for detail
  * order      - asc | desc
@@ -83,6 +84,7 @@ function cat_func($atts) {
             'thumbnail_width' => '130',
             'date'          => 'false',
             'excerpt'       => 'true',
+            'full_post'     => 'false',
             'orderby'       => 'post_date',
             'order'         => 'desc'
             ), $atts));
@@ -117,7 +119,9 @@ $tmp_post = $post;
         if ($date == 'true') {
             $output .= '<span class="cat-post-date">'.get_the_date().'</span>';
         }
-        if ($excerpt == 'true') {
+        if ($full_post == 'true'){
+          $output .= '<span class="cat-post-content">'.get_the_content().'</span>';
+        }elseif ($excerpt == 'true') {
             $output .= '<span class="cat-post-excerpt">'.get_the_excerpt().'</span>';
         }
         $output .= '</div>

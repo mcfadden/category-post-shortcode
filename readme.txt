@@ -38,7 +38,8 @@ just put this shortcode in your post or pages
 * thumbnail_height - image size for the thumbnail. default is 130
 * thumbnail_width - image size for the thumbnail. default is 130
 * date       - set true if you want to display post date. default is false. Uses format set in WordPress Settings > General > Date Format
-* excerpt    - set true if you want to display excertp. default is true
+* excerpt    - set true if you want to display excerpt. (ignored is full_post is true) default is true
+* full_post  - set true if you want to display entire post. (overrides excerpt setting) default is false
 * orderby    - your post will order by . default post_date . check http://codex.wordpress.org/Template_Tags/get_posts for detail
 * order      - asc | desc
 
@@ -103,4 +104,6 @@ just put this shortcode in your post or pages
 = 2.4 =
 * add option to display the post date
 
+= 2.5 =
+* add option to display post content or just the excerpt
 
